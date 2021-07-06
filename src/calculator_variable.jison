@@ -7,6 +7,8 @@
 
 \s+                   /* skip whitespace */
 [0-9]+("."[0-9]+)?\b  return 'NUMBER'
+0b[01]+               return 'NUMBER'
+0x[0-9a-f]+           return 'NUMBER'
 "("                   return '('
 ")"                   return ')'
 
