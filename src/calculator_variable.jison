@@ -5,33 +5,33 @@
 %lex
 %%
 
-\s+                   /* skip whitespace */
-[0-9]+("."[0-9]+)?\b  return 'NUMBER'
-0b[01]+               return 'NUMBER'
-0x[0-9a-f]+           return 'NUMBER'
-"("                   return '('
-")"                   return ')'
+\s+                     /* skip whitespace */
+[0-9_]+("."[0-9_]+)?\b  return 'NUMBER'
+0b[01_]+                return 'NUMBER'
+0x[0-9a-f_]+            return 'NUMBER'
+"("                     return '('
+")"                     return ')'
 
-"~"                   return '~' // 位运算取反
-"!"                   return '!'
-"^"                   return '^'
-"%"                   return '%' // 余
-"*"                   return '*'
-"/"                   return '/'
-"+"                   return '+'
-"-"                   return '-'
+"~"                     return '~' // 位运算取反
+"!"                     return '!'
+"^"                     return '^'
+"%"                     return '%' // 余
+"*"                     return '*'
+"/"                     return '/'
+"+"                     return '+'
+"-"                     return '-'
 
-"<<"                  return '<<' // 位运算左移
-">>"                  return '>>' // 位运算算术右移动
-"&"                   return '&'  // 位运算 AND
-"|"                   return '|'  // 位运算 OR
+"<<"                    return '<<' // 位运算左移
+">>"                    return '>>' // 位运算算术右移动
+"&"                     return '&'  // 位运算 AND
+"|"                     return '|'  // 位运算 OR
 
-","                   return ',' // 参数间分隔符
-"PI"                  return 'PI'
-"E"                   return 'E'
-[a-z][a-z0-9_]*\b     return 'SYMBOL'
-<<EOF>>               return 'EOF'
-.                     return 'INVALID'
+","                     return ',' // 参数间分隔符
+"PI"                    return 'PI'
+"E"                     return 'E'
+[a-z][a-z0-9_]*\b       return 'SYMBOL'
+<<EOF>>                 return 'EOF'
+.                       return 'INVALID'
 
 /lex
 
@@ -87,7 +87,7 @@ e
     | '(' e ')'
         {$$ = $2;}
     | NUMBER
-        {$$ = Number(yytext);}
+        {$$ = Number(yytext.replace(/_/g, ''));}
     | E
         {$$ = Math.E;}
     | PI

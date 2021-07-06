@@ -74,7 +74,7 @@ describe('VariableCalculator Test', () => {
         assert((Math.PI / 2 + 0 + Math.PI / 4) - r4 < 0.01);
     });
 
-    it('Test binary and hex', ()=>{
+    it('Test binary and hex and long number', ()=>{
         let r1 = VariableCalculator.evaluate('0b1000');
         assert.equal(r1, 8);
 
@@ -83,6 +83,12 @@ describe('VariableCalculator Test', () => {
 
         let r3 = VariableCalculator.evaluate('0b1000 + 0xa');
         assert.equal(r3, 18);
+
+        let r4 = VariableCalculator.evaluate('123_456');
+        assert.equal(r4, 123456);
+
+        let r5 = VariableCalculator.evaluate('12_00 + 0b10_00 + 0x00_0a');
+        assert.equal(r5, 1218);
     });
 
     it('Test invalid express', () => {
