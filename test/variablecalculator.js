@@ -23,25 +23,37 @@ describe('VariableCalculator Test', () => {
 
         let r6 = VariableCalculator.evaluate('4!');
         assert.equal(r6, 24);
-
-        let r7 = VariableCalculator.evaluate('sqrt(4) + sqrt(9)');
-        assert.equal(r7, 2 + 3);
-
-        let r8 = VariableCalculator.evaluate('abs(-123) + abs(456)');
-        assert.equal(r8, 123 + 456);
-
-        let r9 = VariableCalculator.evaluate('round(3.14) + round(2.718)');
-        assert.equal(r9, 3 + 3);
-
-        let r10 = VariableCalculator.evaluate('trunc(3.14) + trunc(2.718)');
-        assert.equal(r10, 3 + 2);
-
-        let r11 = VariableCalculator.evaluate('log10(100) + log2(1024) + ln(E)');
-        assert.equal(r11, 2 + 10 + 1);
-
-        let r12 = VariableCalculator.evaluate('log(10,1000)');
-        assert(3 - r12 < 0.01);
     });
+
+    it('Test functions', ()=>{
+        let r1 = VariableCalculator.evaluate('sqrt(4) + sqrt(9)');
+        assert.equal(r1, 2 + 3);
+
+        let r2 = VariableCalculator.evaluate(`cbrt(8) + cbrt(27)`);
+        assert.equal(r2, 2 + 3);
+
+        let r3 = VariableCalculator.evaluate('abs(-123) + abs(456)');
+        assert.equal(r3, 123 + 456);
+
+        let r4 = VariableCalculator.evaluate('round(3.14) + round(2.718)');
+        assert.equal(r4, 3 + 3);
+
+        let r5 = VariableCalculator.evaluate('trunc(3.14) + trunc(2.718)');
+        assert.equal(r5, 3 + 2);
+
+        let r6 = VariableCalculator.evaluate('ceil(4.1) + ceil(4.9)');
+        assert.equal(r6, 10);
+
+        let r7 = VariableCalculator.evaluate('floor(4.1) + floor(4.9)');
+        assert.equal(r7, 8);
+
+        let r8 = VariableCalculator.evaluate('log10(100) + log2(1024) + ln(E)');
+        assert.equal(r8, 2 + 10 + 1);
+
+        let r9 = VariableCalculator.evaluate('log(10,1000)');
+        assert(3 - r9 < 0.01);
+    });
+
 
     it('Test bitwise operators', ()=>{
         let r1 = VariableCalculator.evaluate('3 | 5'); //'0b0011 | 0b0101'
