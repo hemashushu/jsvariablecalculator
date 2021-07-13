@@ -25,6 +25,8 @@
 ">>"                    return '>>' // 位运算算术右移动
 "&"                     return '&'  // 位运算 AND
 "|"                     return '|'  // 位运算 OR
+"xor"                   return 'xor'
+"xnor"                  return 'xnor'
 
 ","                     return ',' // 参数间分隔符
 "PI"                    return 'PI'
@@ -39,6 +41,7 @@
 
 %left '|'
 %left '&'
+%left 'xor' 'xnor'
 %left '<<' '>>'
 %left '+' '-'
 %left '*' '/'
@@ -62,6 +65,10 @@ e
         {$$ = $1 | $3;}
     | e '&' e
         {$$ = $1 & $3;}
+    | e 'xor' e
+        {$$ = $1 ^ $3;}
+    | e 'xnor' e
+        {$$ = ~($1 ^ $3);}
     | e '<<' e
         {$$ = $1 << $3;}
     | e '>>' e

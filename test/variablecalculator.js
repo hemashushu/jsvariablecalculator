@@ -62,7 +62,7 @@ describe('VariableCalculator Test', () => {
         let r2 = VariableCalculator.evaluate('3 & 5'); //'0b0011 & 0b0101'
         assert.equal(r2, 0b0011 & 0b0101);
 
-        let r3 = VariableCalculator.evaluate('~3'); //'~0b0011'
+        let r3 = VariableCalculator.evaluate('~3'); //'~0b0011' // 按 32bit 整数计算
         assert.equal(r3, ~0b0011);
 
         let r4 = VariableCalculator.evaluate('3 << 2'); //'0b0011 << 2'
@@ -70,6 +70,12 @@ describe('VariableCalculator Test', () => {
 
         let r5 = VariableCalculator.evaluate('5 >> 2'); //'0b0101 >> 2'
         assert.equal(r5, 0b0101 >> 2);
+
+        let r6 = VariableCalculator.evaluate('0b1010 xor 0b1100');
+        assert.equal(r6, 0b0110);
+
+        let r7 = VariableCalculator.evaluate('0b1010 xnor 0b1100'); // 按 32bit 整数计算
+        assert.equal(r7, ~0b0110);
     });
 
     it('Test circular functions', () => {
