@@ -19,7 +19,7 @@ const factorial = (n) => {
 };
 
 parser.yy.functions = {
-    factorial: factorial,
+    fact: factorial, // 阶乘
 
     log10: Math.log10,
     log2: Math.log2,
